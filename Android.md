@@ -216,6 +216,18 @@ Warning: File /Users/kristianmandrup/.android/repositories.cfg could not be load
 
 ## Develop the Ionic app and sync it to android project
 
+Enable capacitor
+
+`$ ionic integrations enable capacitor`
+
+Initialise project
+
+`$ npx cap init`
+
+Build project
+
+`$ ionic build`
+
 With each meaningful change, Ionic apps must be built into web assets before the change can appear on Android simulators and devices. The web assets then must be copied into the native project.
 
 ```sh
@@ -226,6 +238,19 @@ $ ionic capacitor copy android
 ✔ Copying capacitor.config.json in 1.01ms
 ✔ copy in 1.11s
 ```
+
+You can also do either:
+
+- `npx cap sync` sync for all platforms added
+- `npx cap sync android` sync only for android
+
+Open android project in Android Studio
+
+`$ npx cap open android`
+
+Select the target device, such as `Pixel 2` and select `Run` (green arrow)
+
+![Android simulator](./doc-images/android/android-simulator-works.png)
 
 ### Troubleshooting Android Studio
 
@@ -241,3 +266,5 @@ From Android Studio, reset, restart and rebuild
 
 - `File -> Invalidate Caches/restart`
 - `File -> Sync Project with gradle files`
+
+If Android Studio alerts you of updates available, run the update. Then reload Android Studio and run the app again. Erros may be due to "out of sync" configurations/dependencies that will (in most cases) be re-synced when the update is completed.
