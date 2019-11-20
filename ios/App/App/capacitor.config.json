@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "my-react-app",
+  "appId": "io.enginetransformation.ionicreactapp",
+  "appName": "ionic-react-app",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
