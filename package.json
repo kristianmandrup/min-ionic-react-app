@@ -27,7 +27,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ios:prepare": "./scripts/prepare-ios.sh"
+    "prepare": "./scripts/prepare.sh",
+    "sync": "./scripts/sync.sh",
+    "ios:prepare": "./scripts/ios/prepare.sh",
+    "ios:sync": "./scripts/ios/sync.sh",
+    "android:prepare": "./scripts/android/prepare.sh",
+    "android:sync": "./scripts/android/sync.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
