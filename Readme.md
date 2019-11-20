@@ -9,7 +9,9 @@ For exploring how to work with Ionic for Android and iOS native mobile developme
 Scripts to facilitate development can be found in `/scripts`
 To create your own script and grant execute permission use `chmod a+x`
 
-### iOS development
+### iOS
+
+Also see more details on [iOS environment setup and development workflow](https://github.com/TransformCore/eon-ionic-enduser-client-app/blob/master/docs/iOS.md)
 
 Run `npm run ios:prepare`
 
