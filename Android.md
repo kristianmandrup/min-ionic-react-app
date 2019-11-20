@@ -226,3 +226,18 @@ $ ionic capacitor copy android
 ✔ Copying capacitor.config.json in 1.01ms
 ✔ copy in 1.11s
 ```
+
+### Troubleshooting Android Studio
+
+In case it displays errors like:
+
+```sh
+Unsupported Modules Detected: Compilation is not supported for following modules: capacitor-cordova-android-plugins. Unfortunately you can't have non-Gradle Java modules and Android-Gradle modules in one project.
+```
+
+See [Capacitor issue](https://github.com/ionic-team/capacitor/issues/349)
+
+From Android Studio, reset, restart and rebuild
+
+- `File -> Invalidate Caches/restart`
+- `File -> Sync Project with gradle files`
