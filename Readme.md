@@ -44,5 +44,5 @@ npm run android:sync
 
 ### Platform development
 
-- [iOS development guide](./iOS.md)
-- [Android development guide](./Android.md)
+- [iOS development guide](./docs/ios/iOS.md)
+- [Android development guide](./docs/android/Android.md)

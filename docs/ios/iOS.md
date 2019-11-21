@@ -14,4 +14,4 @@ This will
 
 You should then be able to run the Ionic app on the simulator.
 
-![iOS simulator](./doc-images/ios/ios-simulator.png)
+![iOS simulator](./images/ios-simulator.png)

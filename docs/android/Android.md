@@ -39,15 +39,15 @@ Install from [Android developer studio](https://developer.android.com/studio/)
 
 Launch Android Studio
 
-![Android Studio start screen](./doc-images/android/as-start-screen.png)
+![Android Studio start screen](./images/as-start-screen.png)
 
 Click the `configure` menu and select `SDK manager`
 
-![Select SDK manager](./doc-images/android/as-menu-sdk-manager.png)
+![Select SDK manager](./images/as-menu-sdk-manager.png)
 
 Make sure that an SDK for the latest Android is installed
 
-![SDK manager](./doc-images/android/as-sdk-manager.png)
+![SDK manager](./images/as-sdk-manager.png)
 
 On a Mac, the SDK should be installed/located in `$HOME/Library/Android/sdk`
 
@@ -55,11 +55,11 @@ On a Mac, the SDK should be installed/located in `$HOME/Library/Android/sdk`
 
 In the Android top level menu, select `Check for updates`
 
-![Check for updates](./doc-images/android/as-menu-check-updates.png)
+![Check for updates](./images/as-menu-check-updates.png)
 
 On the SDK updates screen select `Update now` to install the updates. Otherwise select `Remind me later` to do it later when you have more time and patience (may take up to 10-15 minutes).
 
-![SDK updates screen](./doc-images/android/as-menu-check-updates.png)
+![SDK updates screen](./images/as-menu-check-updates.png)
 
 Agree to terms and agreements
 
@@ -101,7 +101,7 @@ An AVD contains a hardware profile, system image, storage area, skin, and other 
 
 In the Android Studio welcome screen, click `Configure » AVD Manager`
 
-![Virtual devices manager](./doc-images/android/virtual-devices.png)
+![Virtual devices manager](./images/virtual-devices.png)
 
 Click `+ Create Virtual Device` and select a suitable device definition. If unsure, choose `Pixel 2`. If you have a suitable device like in this screenshot you can move on.
 
@@ -250,21 +250,9 @@ Open android project in Android Studio
 
 Select the target device, such as `Pixel 2` and select `Run` (green arrow)
 
-![Android simulator](./doc-images/android/android-simulator-works.png)
+![Android simulator](./images/android-simulator-works.png)
 
-### Troubleshooting Android Studio
+### More resources
 
-In case it displays errors like:
-
-```sh
-Unsupported Modules Detected: Compilation is not supported for following modules: capacitor-cordova-android-plugins. Unfortunately you can't have non-Gradle Java modules and Android-Gradle modules in one project.
-```
-
-See [Capacitor issue](https://github.com/ionic-team/capacitor/issues/349)
-
-From Android Studio, reset, restart and rebuild
-
-- `File -> Invalidate Caches/restart`
-- `File -> Sync Project with gradle files`
-
-If Android Studio alerts you of updates available, run the update. Then reload Android Studio and run the app again. Erros may be due to "out of sync" configurations/dependencies that will (in most cases) be re-synced when the update is completed.
+- [Android Studio Troubleshooting](./Android-troubleshooting.md)
+- - [Android styling](./Android-styling.md)
