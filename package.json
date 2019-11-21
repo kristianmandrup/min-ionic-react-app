@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "_prepare": "./scripts/prepare.sh",
+    "_init": "./scripts/init.sh",
     "_sync": "./scripts/sync.sh",
     "ios:prepare": "./scripts/ios/prepare.sh",
     "ios:sync": "./scripts/ios/sync.sh",

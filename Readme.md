@@ -9,10 +9,40 @@ Minimal application for exploring how to work with Ionic for Android and iOS nat
 Scripts to facilitate development can be found in `/scripts`
 To create your own script and grant execute permission use `chmod a+x`
 
-### iOS
+```sh
+chmod a+x scripts/*/*.sh
+chmod a+x scripts/*.sh
+```
 
-[Ionic iOS development guide](./iOS.md)
+### Initialize
 
-### Android
+```sh
+npm run _init
+```
 
-[Ionic Android development guide](./Android.md)
+### Prepare platform
+
+Creates and initialises app for particular platform
+
+```sh
+npm run android:prepare
+```
+
+### Sync to platform app
+
+Sync to all platforms
+
+```sh
+npm run _sync
+```
+
+Sync to particular platform
+
+```sh
+npm run android:sync
+```
+
+### Platform development
+
+- [iOS development guide](./iOS.md)
+- [Android development guide](./Android.md)

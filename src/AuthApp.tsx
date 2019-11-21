@@ -27,7 +27,7 @@ const InnerApp = (props: any) => {
 };
 
 const App: React.FC = (props: any) => {
-  //@ts-ignore
+  // eslint-disable-next-line
   const [_, dispatch] = useReducer(reducer, initialState);
   const [user, setUser] = useState();
   useEffect(() => {
