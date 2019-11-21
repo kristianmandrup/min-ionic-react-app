@@ -1,3 +1,6 @@
 {
-  "extends": ["tslint-react"]
+  "extends": ["tslint-react"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off"
+  }
 }

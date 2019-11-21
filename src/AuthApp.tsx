@@ -27,6 +27,7 @@ const InnerApp = (props: any) => {
 };
 
 const App: React.FC = (props: any) => {
+  //@ts-ignore
   const [_, dispatch] = useReducer(reducer, initialState);
   const [user, setUser] = useState();
   useEffect(() => {
@@ -41,4 +42,4 @@ const App: React.FC = (props: any) => {
   );
 };
 
-export default withAuthenticator(App, true);
+export const AuthApp = withAuthenticator(App, true);
