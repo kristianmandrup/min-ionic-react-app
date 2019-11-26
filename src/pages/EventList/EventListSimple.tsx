@@ -20,6 +20,7 @@ import {
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventListNumber } from "./display";
+import { orderEventsByCreatedDate } from "./utils";
 
 const initialState = { energyTransferEvents: [] };
 
@@ -34,10 +35,7 @@ export const EventListSimple: React.FC<any> = (props: any) => {
 
   // get transferEvents and customer from reducer store
   // customer is managed/updated by App component on Auth signin
-  let {
-    // energyTransferEvents,
-    customer
-  } = state;
+  let { energyTransferEvents, customer } = state;
   // subscribes to list of transfer events
   // makes dispatch to reducer to add incoming events
   useEffect(() => {
@@ -57,9 +55,27 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     return () => subscription.unsubscribe();
   }, [customer]);
 
-  const eventsToDisplay = [{ type: "event" }];
+  if (energyTransferEvents.length === 0) {
+    console.log("No energyTransferEvents");
+    // return <IonText>No events</IonText>;
+  }
 
-  console.log({ eventsToDisplay });
+  const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
+
+  console.log({ orderedEvents });
+
+  const eventsToDisplay = orderedEvents.slice(0, 5);
+
+  const $eventTypes = eventsToDisplay.reduce(($set: any, event: any) => {
+    $set.add(event.eventType);
+    return $set;
+  }, new Set<string>());
+
+  const eventTypesDisplayed: string[] = Array.from<any>($eventTypes);
+
+  // const eventsToDisplay = [{ type: "event" }];
+
+  console.log({ eventsToDisplay, eventTypesDisplayed });
 
   return (
     <IonPage>
