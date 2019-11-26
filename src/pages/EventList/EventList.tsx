@@ -1,7 +1,6 @@
 import React, { useReducer, useState } from "react";
 import { reducer } from "../../store";
 import { IonGrid, IonContent, IonPage, IonHeader, IonText } from "@ionic/react";
-import moment from "moment";
 import { EventItem } from "./EventItem";
 import { OneToolbar } from "../../components/OneToolbar";
 import {
@@ -11,26 +10,10 @@ import {
 import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
+import { populateEventWithCustomer, orderEventsByCreatedDate } from "./utils";
 // import { createContainer } from "unstated-next";
 
 const initialState = { energyTransferEvents: [] };
-
-const populateEventWithCustomer = (event: any, customer: any) => {
-  event.customer = customer;
-  return event;
-};
-
-const toMilliSec = (event: any) => moment(event.eventDateTime).unix();
-
-const byDate = (a: any, b: any) => {
-  const ma = toMilliSec(a);
-  const mb = toMilliSec(b);
-  return ma - mb;
-};
-
-const sortByDate = (items: any) => items.sort(byDate);
-
-const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
 
 export const DisplayEventListNumber = ({ eventsToDisplay }: any = {}) => (
   <>{eventsToDisplay.length}</>

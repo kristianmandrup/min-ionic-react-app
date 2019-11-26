@@ -12,10 +12,10 @@ import {
 } from "@ionic/react";
 // import { EventItem } from "./EventItem";
 import { OneToolbar } from "../../components/OneToolbar";
-// import {
-//   createTransferEventSubscription,
-//   getContentItemForEventType
-// } from "../../api-calls";
+import {
+  createTransferEventSubscription
+  // getContentItemForEventType
+} from "../../api-calls";
 // import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
@@ -47,6 +47,15 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     // to avoid multiple calls
     getCustomerDataByEmail(dispatch, { user });
   }, [user, customer]);
+
+  useEffect(() => {
+    if (!customer) return;
+    console.log("create transfer event subscription");
+
+    // @ts-ignore
+    const subscription = createTransferEventSubscription(dispatch);
+    return () => subscription.unsubscribe();
+  }, [customer]);
 
   const eventsToDisplay = [{ type: "event" }];
 

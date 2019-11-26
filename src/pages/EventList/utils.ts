@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const populateEventWithCustomer = (event: any, customer: any) => {
+export const populateEventWithCustomer = (event: any, customer: any) => {
   event.customer = customer;
   return event;
 };
@@ -15,4 +15,4 @@ const byDate = (a: any, b: any) => {
 
 const sortByDate = (items: any) => items.sort(byDate);
 
-const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
+export const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
