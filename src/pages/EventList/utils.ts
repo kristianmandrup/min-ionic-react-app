@@ -16,3 +16,28 @@ const byDate = (a: any, b: any) => {
 const sortByDate = (items: any) => items.sort(byDate);
 
 export const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
+
+export function hashCode(str: string) {
+  return str
+    .split("")
+    .reduce(
+      (prevHash: any, currVal: any) =>
+        ((prevHash << 5) - prevHash + currVal.charCodeAt(0)) | 0,
+      0
+    );
+}
+
+export async function asyncReduce(
+  array: any[],
+  handler: any,
+  startingValue: any
+) {
+  let result = startingValue;
+
+  for (let value of array) {
+    // `await` will transform result of the function to the promise,
+    // even it is a synchronous call
+    result = await handler(result, value);
+  }
+  return result;
+}

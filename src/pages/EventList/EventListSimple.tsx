@@ -11,18 +11,26 @@ import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventListNumber } from "./display";
-import { orderEventsByCreatedDate } from "./utils";
+import {
+  orderEventsByCreatedDate,
+  // asyncReduce,
+  hashCode
+} from "./utils";
 
 const initialState = { energyTransferEvents: [] };
 
 export const EventListSimple: React.FC<any> = (props: any) => {
   let { user } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const [counter, setCounter] = useState(0);
-  // const [eventTypeMap, setEventTypeMap] = useState({});
+  const [counter, setCounter] = useState(0);
+  const [
+    eventTypeMap
+    // setEventTypeMap
+  ] = useState({});
   const [eventTypesToDisplay, setEventTypesToDisplay] = useState(
     [] as string[]
   );
+  const [hash, setHash] = useState({});
 
   // get transferEvents and customer from reducer store
   // customer is managed/updated by App component on Auth signin
@@ -51,6 +59,35 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     // return <IonText>No events</IonText>;
   }
 
+  // useEffect(() => {
+  //   // const fetchEventTypeContentItems = async () => {
+  //   //   const reducer = async (etMap: any, eventType: string) => {
+  //   //     const eventTypeContentItem = await getContentItemForEventType(
+  //   //       eventType
+  //   //     );
+  //   //     etMap[eventType] = eventTypeContentItem;
+  //   //     return etMap;
+  //   //   };
+
+  //   //   const eventTypeMapPromises = asyncReduce(
+  //   //     eventTypesToDisplay,
+  //   //     reducer,
+  //   //     {}
+  //   //   );
+
+  //   //   const $eventTypeMap = await Promise.resolve(eventTypeMapPromises);
+  //   //   setEventTypeMap($eventTypeMap);
+  //   // };
+
+  //   console.log("fetchEventTypeContentItems", { counter, hash });
+
+  //   // fetchEventTypeContentItems();
+  // }, [counter, eventTypesToDisplay, hash]);
+
+  useEffect(() => {
+    console.log({ counter });
+  }, [counter, hash]);
+
   const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
 
   console.log({ orderedEvents });
@@ -62,40 +99,32 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     return $set;
   }, new Set<string>());
 
-  const eventTypesDisplayed: string[] = Array.from<any>($eventTypes);
+  const $eventTypesDisplayed: string[] = Array.from<any>($eventTypes);
+
+  const eventTypesDisplayedStr = $eventTypesDisplayed.join(":");
+  const $hash = hashCode(eventTypesDisplayedStr);
 
   // const eventsToDisplay = [{ type: "event" }];
 
-  console.log({ eventsToDisplay, eventTypesDisplayed });
+  const sameEventTypes = _.isEqual(eventTypesToDisplay, $eventTypesDisplayed);
+  const sameHash = $hash === hash;
 
-  // useEffect(() => {
-  //   const fetchEventTypeContentItems = async () => {
-  //     const reducer = async (etMap: any, eventType: string) => {
-  //       const eventTypeContentItem = await getContentItemForEventType(
-  //         eventType
-  //       );
-  //       etMap[eventType] = eventTypeContentItem;
-  //       return etMap;
-  //     };
+  console.log({
+    sameEventTypes,
+    sameHash,
+    eventsToDisplay,
+    eventTypesDisplayedStr,
+    $hash,
+    hash
+  });
 
-  //     const eventTypeMapPromises = asyncReduce(
-  //       eventTypesDisplayed,
-  //       reducer,
-  //       {}
-  //     );
-
-  //     setEventTypeMap(await Promise.resolve(eventTypeMapPromises));
-  //   };
-
-  //   console.log("fetchEventTypeContentItems", { counter, eventTypesDisplayed });
-
-  //   fetchEventTypeContentItems();
-  // }, [counter, eventTypesDisplayed]);
-
-  const sameEventTypes = _.isEqual(eventTypesToDisplay, eventTypesDisplayed);
+  if (!sameHash) {
+    setHash($hash);
+    setCounter(0);
+  }
 
   if (!sameEventTypes) {
-    setEventTypesToDisplay(eventTypesDisplayed);
+    setEventTypesToDisplay($eventTypesDisplayed);
   }
 
   if (!customer) {
@@ -110,7 +139,10 @@ export const EventListSimple: React.FC<any> = (props: any) => {
 
       <IonContent>
         <IonGrid size-md="6" offset-md="3">
-          <DisplayEventListNumber eventsToDisplay={eventsToDisplay} />
+          <DisplayEventListNumber
+            eventsToDisplay={eventsToDisplay}
+            eventTypeMap={eventTypeMap}
+          />
         </IonGrid>
       </IonContent>
     </IonPage>

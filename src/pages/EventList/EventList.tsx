@@ -10,7 +10,11 @@ import {
 import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
-import { populateEventWithCustomer, orderEventsByCreatedDate } from "./utils";
+import {
+  asyncReduce,
+  populateEventWithCustomer,
+  orderEventsByCreatedDate
+} from "./utils";
 // import { createContainer } from "unstated-next";
 
 const initialState = { energyTransferEvents: [] };
@@ -43,17 +47,6 @@ export const DisplayEvents = (props: any) => {
     <DisplayEventListNumber {...props} />
   );
 };
-
-async function asyncReduce(array: any[], handler: any, startingValue: any) {
-  let result = startingValue;
-
-  for (let value of array) {
-    // `await` will transform result of the function to the promise,
-    // even it is a synchronous call
-    result = await handler(result, value);
-  }
-  return result;
-}
 
 export const EventList: React.FC<any> = (props: any) => {
   let { user } = props;
