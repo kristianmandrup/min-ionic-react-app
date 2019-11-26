@@ -41,8 +41,10 @@
     "_sync": "./scripts/sync.sh",
     "ios:prepare": "./scripts/ios/prepare.sh",
     "ios:sync": "./scripts/ios/sync.sh",
+    "ios:open": "npx cap open ios",
     "android:prepare": "./scripts/android/prepare.sh",
-    "android:sync": "./scripts/android/sync.sh"
+    "android:sync": "./scripts/android/sync.sh",
+    "android:open": "npx cap open android"
   },
   "eslintConfig": {
     "extends": "react-app"
