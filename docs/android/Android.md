@@ -252,7 +252,72 @@ Select the target device, such as `Pixel 2` and select `Run` (green arrow)
 
 ![Android simulator](./images/android-simulator-works.png)
 
+### Run with live reload
+
+[ionic cordova run](https://ionicframework.com/docs/cli/commands/cordova-run)
+
+```sh
+$ ionic cordova run [<platform>] [options]
+# ..
+```
+
+Run on android with live reload:
+
+```sh
+$ ionic cordova run android -l
+# ..
+```
+
+## Live debug android app
+
+See [Live Debug Your Cordova/ionic app with Visual Stuido Code](https://geeklearning.io/live-debug-your-cordova-ionic-application-with-visual-studio-code/)
+
+- install the `Cordova Tools` extension for Visual Studio Code (reload VS Code)
+- click the `debug` icon on the left-hand side
+- click the `gear` icon at the top of the `Debug` panel
+- select `Cordova` in the dropdown at the top
+
+Install Cordova Tools VS Code extension
+
+![Install Cordova Tools extension](./images/cordova-tools.png)
+
+### Setup Cordova Debug
+
+Select the Cordova environment in the Debug Panel
+
+![Setup Cordova Debug](./images/cordova-debug.png)
+
+### Cordova Android Launch configuration
+
+This will create a `launch.json file` inside the `.vscode` folder in the project directory. You will now have several debug options at the top of the debug panel, such as `Run Android on device` or `Attach to running Android on device`.
+
+![Cordova Android Launch configuration](./images/cordova-android-launch-config.png)
+
+### Run VSC Cordova debug session
+
+If you run `Serve to the browser (ionic serve)`, a new browser window will launch and you'll already be able to debug step by step within VS Code your app running in the browser.
+
+![VSC Cordova debug session](./images/vsc-cordova-debug-session.png)
+
+Now run the `Run Android on emulator` and of course, set the `ionicLiveReload` parameter to `true` if you want to be able to make live changes to your app.
+
+You will also need to enable the `developer` mode on your Android device if you want to run the app on a real device. To do so, you can take a look at my post explaining [how to debug a Cordova application on Android with Chrome](https://geeklearning.io/apache-cordova-and-remote-debugging-on-android/).
+
+```json
+{
+  "name": "Run Android on emulator",
+  "type": "cordova",
+  "request": "launch",
+  "platform": "android",
+  "target": "emulator",
+  "port": 9222,
+  "sourceMaps": true,
+  "cwd": "${workspaceRoot}",
+  "ionicLiveReload": true
+}
+```
+
 ### More resources
 
 - [Android Studio Troubleshooting](./Android-troubleshooting.md)
-- - [Android styling](./Android-styling.md)
+- [Android styling](./Android-styling.md)

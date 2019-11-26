@@ -10,10 +10,11 @@ import {
 } from "@ionic/react";
 import { Home } from "./Home";
 import { IonReactRouter } from "@ionic/react-router";
-import { home, analytics, exit } from "ionicons/icons";
+import { home, analytics, mail, exit } from "ionicons/icons";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router";
 import { EventAdmin } from "./EventAdmin";
+import { EventList } from "./EventList";
 
 const SignedInComp = (props: any) => {
   const { user } = props;
@@ -40,6 +41,11 @@ const SignedInComp = (props: any) => {
             render={props => <EventAdmin user={user} />}
             exact={true}
           />
+          <Route
+            path="/events"
+            render={props => <EventList user={user} />}
+            exact={true}
+          />
           <Route exact path="/" render={() => <Redirect to="/home" />} />
         </IonRouterOutlet>
 
@@ -52,6 +58,15 @@ const SignedInComp = (props: any) => {
           >
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton
+            className="navTab"
+            tab="events"
+            href="/events"
+            onClick={routeTabClicked("events")}
+          >
+            <IonIcon icon={mail} />
+            <IonLabel>Messages</IonLabel>
           </IonTabButton>
           <IonTabButton
             className="navTab"
