@@ -14,7 +14,10 @@ import { home, analytics, mail, exit } from "ionicons/icons";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router";
 import { EventAdmin } from "./EventAdmin";
-import { EventList, EventListSimple } from "./EventList";
+import {
+  // EventList,
+  EventListSimple
+} from "./EventList";
 
 const SignedInComp = (props: any) => {
   const { user } = props;
