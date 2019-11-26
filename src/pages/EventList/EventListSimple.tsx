@@ -1,22 +1,13 @@
-import React, {
-  useReducer
-  // useState
-} from "react";
+import React, { useReducer, useState } from "react";
 import { reducer } from "../../store";
-import {
-  IonGrid,
-  IonContent,
-  IonPage,
-  IonHeader
-  // IonText
-} from "@ionic/react";
+import { IonGrid, IonContent, IonPage, IonHeader, IonText } from "@ionic/react";
 // import { EventItem } from "./EventItem";
 import { OneToolbar } from "../../components/OneToolbar";
 import {
   createTransferEventSubscription
   // getContentItemForEventType
 } from "../../api-calls";
-// import * as _ from "lodash";
+import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventListNumber } from "./display";
@@ -29,9 +20,9 @@ export const EventListSimple: React.FC<any> = (props: any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   // const [counter, setCounter] = useState(0);
   // const [eventTypeMap, setEventTypeMap] = useState({});
-  // const [eventTypesToDisplay, setEventTypesToDisplay] = useState(
-  //   [] as string[]
-  // );
+  const [eventTypesToDisplay, setEventTypesToDisplay] = useState(
+    [] as string[]
+  );
 
   // get transferEvents and customer from reducer store
   // customer is managed/updated by App component on Auth signin
@@ -76,6 +67,40 @@ export const EventListSimple: React.FC<any> = (props: any) => {
   // const eventsToDisplay = [{ type: "event" }];
 
   console.log({ eventsToDisplay, eventTypesDisplayed });
+
+  // useEffect(() => {
+  //   const fetchEventTypeContentItems = async () => {
+  //     const reducer = async (etMap: any, eventType: string) => {
+  //       const eventTypeContentItem = await getContentItemForEventType(
+  //         eventType
+  //       );
+  //       etMap[eventType] = eventTypeContentItem;
+  //       return etMap;
+  //     };
+
+  //     const eventTypeMapPromises = asyncReduce(
+  //       eventTypesDisplayed,
+  //       reducer,
+  //       {}
+  //     );
+
+  //     setEventTypeMap(await Promise.resolve(eventTypeMapPromises));
+  //   };
+
+  //   console.log("fetchEventTypeContentItems", { counter, eventTypesDisplayed });
+
+  //   fetchEventTypeContentItems();
+  // }, [counter, eventTypesDisplayed]);
+
+  const sameEventTypes = _.isEqual(eventTypesToDisplay, eventTypesDisplayed);
+
+  if (!sameEventTypes) {
+    setEventTypesToDisplay(eventTypesDisplayed);
+  }
+
+  if (!customer) {
+    return <IonText>No customer</IonText>;
+  }
 
   return (
     <IonPage>
