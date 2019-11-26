@@ -11,19 +11,18 @@ import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventList } from "./display";
-import { orderEventsByCreatedDate, asyncReduce, hashCode } from "./utils";
+import { eventAndTypesDisplayedFor, hashCode, sameTypes } from "./utils";
+import { useEventTypes } from "./use-event-types";
 
 const initialState = { energyTransferEvents: [] };
 
 export const EventListSimple: React.FC<any> = (props: any) => {
   let { user } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [counter, setCounter] = useState(0);
-  const [eventTypeMap, setEventTypeMap] = useState({});
   const [eventTypesToDisplay, setEventTypesToDisplay] = useState(
     [] as string[]
   );
-  const [hash, setHash] = useState({});
+  const [hash, setHash] = useState(0);
 
   // get transferEvents and customer from reducer store
   // customer is managed/updated by App component on Auth signin
@@ -47,76 +46,18 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     return () => subscription.unsubscribe();
   }, [customer]);
 
-  if (energyTransferEvents.length === 0) {
-    console.log("No energyTransferEvents");
-    // return <IonText>No events</IonText>;
-  }
+  const eventTypeMap = useEventTypes({ eventTypesToDisplay, hash });
+  const { events, eventTypes } = eventAndTypesDisplayedFor(
+    energyTransferEvents
+  );
 
-  useEffect(() => {
-    const fetchEventTypeContentItems = async () => {
-      const reducer = async (etMap: any, eventType: string) => {
-        const eventTypeContentItem = await getContentItemForEventType(
-          eventType
-        );
-        etMap[eventType] = eventTypeContentItem;
-        return etMap;
-      };
+  const { same, newHash } = sameTypes(eventTypes, hash);
 
-      const eventTypeMapPromises = asyncReduce(
-        eventTypesToDisplay,
-        reducer,
-        {}
-      );
+  console.log({ same, eventTypes, hash, newHash });
 
-      const $eventTypeMap = await Promise.resolve(eventTypeMapPromises);
-      setEventTypeMap($eventTypeMap);
-    };
-
-    console.log("fetchEventTypeContentItems", { counter, hash });
-
-    fetchEventTypeContentItems();
-  }, [counter, eventTypesToDisplay, hash]);
-
-  setTimeout(() => {
-    setCounter(counter + 1);
-  }, 8000);
-
-  const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
-
-  console.log({ orderedEvents });
-
-  const eventsToDisplay = orderedEvents.slice(0, 5);
-
-  const $eventTypes = eventsToDisplay.reduce(($set: any, event: any) => {
-    $set.add(event.eventType);
-    return $set;
-  }, new Set<string>());
-
-  const $eventTypesDisplayed: string[] = Array.from<any>($eventTypes);
-
-  const eventTypesDisplayedStr = $eventTypesDisplayed.join(":");
-  const $hash = hashCode(eventTypesDisplayedStr);
-
-  // const eventsToDisplay = [{ type: "event" }];
-
-  const sameEventTypes = _.isEqual(eventTypesToDisplay, $eventTypesDisplayed);
-  const sameHash = $hash === hash;
-
-  console.log({
-    sameEventTypes,
-    sameHash,
-    eventsToDisplay,
-    eventTypesDisplayedStr,
-    $hash,
-    hash
-  });
-
-  if (!sameHash) {
-    setHash($hash);
-  }
-
-  if (!sameEventTypes) {
-    setEventTypesToDisplay($eventTypesDisplayed);
+  if (!same) {
+    setHash(newHash);
+    setEventTypesToDisplay(eventTypes);
   }
 
   if (!customer) {
@@ -132,7 +73,7 @@ export const EventListSimple: React.FC<any> = (props: any) => {
       <IonContent>
         <IonGrid size-md="6" offset-md="3">
           <DisplayEventList
-            eventsToDisplay={eventsToDisplay}
+            eventsToDisplay={events}
             eventTypeMap={eventTypeMap}
             customer={customer}
           />

@@ -17,6 +17,25 @@ const sortByDate = (items: any) => items.sort(byDate);
 
 export const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
 
+export const eventAndTypesDisplayedFor = (energyTransferEvents: any[]) => {
+  const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
+  const eventsToDisplay = orderedEvents.slice(0, 5);
+  const $eventTypes = eventsToDisplay.reduce(($set: any, event: any) => {
+    $set.add(event.eventType);
+    return $set;
+  }, new Set<string>());
+
+  const eventTypes = Array.from<any>($eventTypes);
+  return { events: eventsToDisplay, eventTypes };
+};
+
+export const sameTypes = (eventTypes: any[], hash: number) => {
+  const eventTypesDisplayedStr = eventTypes.join(":");
+  const newHash = hashCode(eventTypesDisplayedStr);
+  const same = newHash === hash;
+  return { same, newHash };
+};
+
 export function hashCode(str: string) {
   return str
     .split("")
