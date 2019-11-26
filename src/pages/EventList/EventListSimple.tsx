@@ -4,18 +4,14 @@ import { IonGrid, IonContent, IonPage, IonHeader, IonText } from "@ionic/react";
 // import { EventItem } from "./EventItem";
 import { OneToolbar } from "../../components/OneToolbar";
 import {
-  createTransferEventSubscription
-  // getContentItemForEventType
+  createTransferEventSubscription,
+  getContentItemForEventType
 } from "../../api-calls";
 import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventListNumber } from "./display";
-import {
-  orderEventsByCreatedDate,
-  // asyncReduce,
-  hashCode
-} from "./utils";
+import { orderEventsByCreatedDate, asyncReduce, hashCode } from "./utils";
 
 const initialState = { energyTransferEvents: [] };
 
@@ -23,10 +19,7 @@ export const EventListSimple: React.FC<any> = (props: any) => {
   let { user } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
   const [counter, setCounter] = useState(0);
-  const [
-    eventTypeMap
-    // setEventTypeMap
-  ] = useState({});
+  const [eventTypeMap, setEventTypeMap] = useState({});
   const [eventTypesToDisplay, setEventTypesToDisplay] = useState(
     [] as string[]
   );
@@ -59,34 +52,34 @@ export const EventListSimple: React.FC<any> = (props: any) => {
     // return <IonText>No events</IonText>;
   }
 
-  // useEffect(() => {
-  //   // const fetchEventTypeContentItems = async () => {
-  //   //   const reducer = async (etMap: any, eventType: string) => {
-  //   //     const eventTypeContentItem = await getContentItemForEventType(
-  //   //       eventType
-  //   //     );
-  //   //     etMap[eventType] = eventTypeContentItem;
-  //   //     return etMap;
-  //   //   };
-
-  //   //   const eventTypeMapPromises = asyncReduce(
-  //   //     eventTypesToDisplay,
-  //   //     reducer,
-  //   //     {}
-  //   //   );
-
-  //   //   const $eventTypeMap = await Promise.resolve(eventTypeMapPromises);
-  //   //   setEventTypeMap($eventTypeMap);
-  //   // };
-
-  //   console.log("fetchEventTypeContentItems", { counter, hash });
-
-  //   // fetchEventTypeContentItems();
-  // }, [counter, eventTypesToDisplay, hash]);
-
   useEffect(() => {
-    console.log({ counter });
-  }, [counter, hash]);
+    const fetchEventTypeContentItems = async () => {
+      const reducer = async (etMap: any, eventType: string) => {
+        const eventTypeContentItem = await getContentItemForEventType(
+          eventType
+        );
+        etMap[eventType] = eventTypeContentItem;
+        return etMap;
+      };
+
+      const eventTypeMapPromises = asyncReduce(
+        eventTypesToDisplay,
+        reducer,
+        {}
+      );
+
+      const $eventTypeMap = await Promise.resolve(eventTypeMapPromises);
+      setEventTypeMap($eventTypeMap);
+    };
+
+    console.log("fetchEventTypeContentItems", { counter, hash });
+
+    fetchEventTypeContentItems();
+  }, [counter, eventTypesToDisplay, hash]);
+
+  setTimeout(() => {
+    setCounter(counter + 1);
+  }, 8000);
 
   const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
 
@@ -120,7 +113,6 @@ export const EventListSimple: React.FC<any> = (props: any) => {
 
   if (!sameHash) {
     setHash($hash);
-    setCounter(0);
   }
 
   if (!sameEventTypes) {
