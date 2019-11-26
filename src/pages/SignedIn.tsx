@@ -9,6 +9,7 @@ import {
   IonTabButton
 } from "@ionic/react";
 import { Home } from "./Home";
+import { TestNotifications } from "./TestNotifications";
 import { IonReactRouter } from "@ionic/react-router";
 import { home, analytics, mail, exit } from "ionicons/icons";
 import { Auth } from "aws-amplify";
@@ -49,6 +50,11 @@ const SignedInComp = (props: any) => {
             render={props => <EventListSimple user={user} />}
             exact={true}
           />
+          <Route
+            path="/notifications"
+            render={props => <TestNotifications user={user} />}
+            exact={true}
+          />
           <Route exact path="/" render={() => <Redirect to="/home" />} />
         </IonRouterOutlet>
 
@@ -62,6 +68,16 @@ const SignedInComp = (props: any) => {
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
+          <IonTabButton
+            className="navTab"
+            tab="notifications"
+            href="/notifications"
+            onClick={routeTabClicked("notifications")}
+          >
+            <IonIcon icon={mail} />
+            <IonLabel>Notifications</IonLabel>
+          </IonTabButton>
+
           <IonTabButton
             className="navTab"
             tab="events"
