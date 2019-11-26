@@ -32,6 +32,10 @@ const sortByDate = (items: any) => items.sort(byDate);
 
 const orderEventsByCreatedDate = (events: any[]) => sortByDate(events);
 
+export const DisplayEventListNumber = ({ eventsToDisplay }: any = {}) => (
+  <>{eventsToDisplay.length}</>
+);
+
 export const DisplayEventList = ({
   eventsToDisplay,
   eventTypeMap,
@@ -53,7 +57,7 @@ export const DisplayEvents = (props: any) => {
   return eventsToDisplay.length === 0 ? (
     <NoEventsToDisplay />
   ) : (
-    <DisplayEventList {...props} />
+    <DisplayEventListNumber {...props} />
   );
 };
 
@@ -84,6 +88,8 @@ export const EventList: React.FC<any> = (props: any) => {
   // makes dispatch to reducer to add incoming events
   useEffect(() => {
     if (customer) return;
+    console.log("getCustomerDataByEmail", { user });
+
     // to avoid multiple calls
     getCustomerDataByEmail(dispatch, { user });
   }, [user, customer]);
@@ -97,9 +103,17 @@ export const EventList: React.FC<any> = (props: any) => {
 
   setTimeout(() => {
     setCounter(counter + 1);
-  }, 5000);
+  }, 8000);
+
+  if (energyTransferEvents.length === 0) {
+    console.log("No energyTransferEvents");
+    // return <IonText>No events</IonText>;
+  }
 
   const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
+
+  console.log({ orderedEvents });
+
   // show latest two events (index: 0, 1)
   const eventsToDisplay = orderedEvents.slice(0, 5);
 
@@ -129,6 +143,8 @@ export const EventList: React.FC<any> = (props: any) => {
       setEventTypeMap(await Promise.resolve(eventTypeMapPromises));
     };
 
+    console.log("fetchEventTypeContentItems", { counter, eventTypesDisplayed });
+
     fetchEventTypeContentItems();
   }, [counter, eventTypesDisplayed]);
 
@@ -139,8 +155,10 @@ export const EventList: React.FC<any> = (props: any) => {
   }
 
   if (!customer) {
-    return <IonText></IonText>;
+    return <IonText>No customer</IonText>;
   }
+
+  console.log({ eventsToDisplay });
 
   return (
     <IonPage>

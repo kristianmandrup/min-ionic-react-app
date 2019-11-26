@@ -14,7 +14,7 @@ import { home, analytics, mail, exit } from "ionicons/icons";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router";
 import { EventAdmin } from "./EventAdmin";
-import { EventList } from "./EventList";
+import { EventList, EventListSimple } from "./EventList";
 
 const SignedInComp = (props: any) => {
   const { user } = props;
@@ -43,7 +43,7 @@ const SignedInComp = (props: any) => {
           />
           <Route
             path="/events"
-            render={props => <EventList user={user} />}
+            render={props => <EventListSimple user={user} />}
             exact={true}
           />
           <Route exact path="/" render={() => <Redirect to="/home" />} />

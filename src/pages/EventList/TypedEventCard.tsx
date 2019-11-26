@@ -7,8 +7,8 @@ import React from "react";
 // };
 
 export const TypedEventCard: React.FC<any> = (event: any) => {
-  const { displayType } = event;
-  const type = displayType || "list";
+  // const { displayType } = event;
+  // const type = displayType || "list";
   // const component: any = eventDisplayMap[type];
   // if (!component) throw Error(`No such message type supported ${type}`);
   // if (typeof component !== "function")
