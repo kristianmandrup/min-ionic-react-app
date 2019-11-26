@@ -10,7 +10,7 @@ import {
 import * as _ from "lodash";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
-import { DisplayEventListNumber } from "./display";
+import { DisplayEventList } from "./display";
 import { orderEventsByCreatedDate, asyncReduce, hashCode } from "./utils";
 
 const initialState = { energyTransferEvents: [] };
@@ -131,9 +131,10 @@ export const EventListSimple: React.FC<any> = (props: any) => {
 
       <IonContent>
         <IonGrid size-md="6" offset-md="3">
-          <DisplayEventListNumber
+          <DisplayEventList
             eventsToDisplay={eventsToDisplay}
             eventTypeMap={eventTypeMap}
+            customer={customer}
           />
         </IonGrid>
       </IonContent>
