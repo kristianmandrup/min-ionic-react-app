@@ -26,8 +26,6 @@ export const useEventTypes = ({ eventTypesToDisplay, hash }: any) => {
       setEventTypeMap($eventTypeMap);
     };
 
-    console.log("fetchEventTypeContentItems", { counter, hash });
-
     fetchEventTypeContentItems();
   }, [counter, eventTypesToDisplay, hash]);
 

@@ -1,17 +1,12 @@
 import React, { useReducer, useState } from "react";
 import { reducer } from "../../store";
 import { IonGrid, IonContent, IonPage, IonHeader, IonText } from "@ionic/react";
-// import { EventItem } from "./EventItem";
 import { OneToolbar } from "../../components/OneToolbar";
-import {
-  createTransferEventSubscription,
-  getContentItemForEventType
-} from "../../api-calls";
-import * as _ from "lodash";
+import { createTransferEventSubscription } from "../../api-calls";
 import { useEffect } from "react"; // using hooks
 import { getCustomerDataByEmail } from "../../api-calls";
 import { DisplayEventList } from "./display";
-import { eventAndTypesDisplayedFor, hashCode, sameTypes } from "./utils";
+import { eventAndTypesDisplayedFor, sameTypes } from "./utils";
 import { useEventTypes } from "./use-event-types";
 
 const initialState = { energyTransferEvents: [] };
@@ -31,7 +26,6 @@ export const EventListSimple: React.FC<any> = (props: any) => {
   // makes dispatch to reducer to add incoming events
   useEffect(() => {
     if (customer) return;
-    console.log("getCustomerDataByEmail", { user });
 
     // to avoid multiple calls
     getCustomerDataByEmail(dispatch, { user });
@@ -39,8 +33,6 @@ export const EventListSimple: React.FC<any> = (props: any) => {
 
   useEffect(() => {
     if (!customer) return;
-    console.log("create transfer event subscription");
-
     // @ts-ignore
     const subscription = createTransferEventSubscription(dispatch);
     return () => subscription.unsubscribe();
@@ -50,10 +42,7 @@ export const EventListSimple: React.FC<any> = (props: any) => {
   const { events, eventTypes } = eventAndTypesDisplayedFor(
     energyTransferEvents
   );
-
   const { same, newHash } = sameTypes(eventTypes, hash);
-
-  console.log({ same, eventTypes, hash, newHash });
 
   if (!same) {
     setHash(newHash);
