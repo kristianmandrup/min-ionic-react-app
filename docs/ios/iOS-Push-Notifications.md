@@ -67,15 +67,29 @@ This is a `GoogleService-Info.plist` file
 
 Upload your APNs authentication key to Firebase. If you don't already have an APNs authentication key, see [Configuring APNs with FCM](https://firebase.google.com/docs/cloud-messaging/ios/certs).
 
+To create an authentication key:
+
+In your developer account, go to `Certificates, Identifiers & Profiles`, and under `Keys`, select `All`.
+
+- Click the `Add` button `+` in the upper-right corner.
+- Enter a description for the `APNs Auth Key`
+- Under `Key Services`, select the `APNs` checkbox, and click `Continue`.
+- Click `Confirm` and then `Download`
+- Save your key in a secure place
+
+IMPORTANT: This is a one-time download, and the key cannot be retrieved later.
+
+If you'd like to verify that your APNs authentication key is set up properly and is accepted by APNs, try sending a test push notification.
+
 Inside your project in the Firebase console, select the gear icon, select `Project Settings`, and then select the `Cloud Messaging` tab.
 
 In APNs authentication key under iOS app configuration, click the `Upload` button.
 
 - Browse to the location where you saved your key
-- select it
-- click Open
-- Add the key ID for the key (available in Certificates, Identifiers & Profiles in the Apple Developer Member Center)
-- click Upload.
+- Select it
+- Click `Open`
+- Add the key `ID` for the key (available in Certificates, Identifiers & Profiles in the Apple Developer Member Center)
+- Click `Upload`
 
 The Firebase Cloud Messaging APNs interface uses the [Apple Push Notification service](https://developer.apple.com/notifications/) (APNs) to send messages up to 4KB in size to your iOS app, including when it is in the background.
 
@@ -84,4 +98,4 @@ To enable sending Push Notifications through APNs, you need:
 - An Apple Push Notification Authentication Key for your Apple Developer account. Firebase Cloud Messaging uses this token to send Push Notifications to the application identified by the App ID.
 - A provisioning profile for that App ID.
 
-You create both in the [Apple Developer Member Center](https://idmsa.apple.com/IDMSWebAuth/signin).
+You create both in the [Apple Developer Member Center](https://developer.apple.com/account/).
