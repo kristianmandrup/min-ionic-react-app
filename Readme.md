@@ -67,6 +67,29 @@ $ npm install @ionic-native/local-notifications
 # ...
 $ npm i cordova-plugin-local-notification
 # ...
+$ npm i @ionic-native/core
+# ...
+$ cordova-plugin-badge
+# ...
 $ npx cap sync
 # ...
+```
+
+The code
+
+```ts
+import { LocalNotifications } from "@ionic-native/local-notifications";
+
+export const addLocalNotification = (opts: any = {}) => {
+  console.log("addLocalNotification", { message: opts.message });
+  const defaultOpts = {
+    title: "Transfer event",
+    text: "A new transfer event",
+    foreground: true
+  }
+  LocalNotifications.schedule(
+    ...defaultOpts,
+    ...opts
+  });
+};
 ```
