@@ -11,6 +11,7 @@ io.on("connection", function(socket) {
       const logFn = console[level];
       logFn(msg);
     });
+    return false;
   });
 });
 
