@@ -63,7 +63,19 @@ Then [Add firebase configuration file](https://firebase.google.com/docs/cloud-me
 
 This is a `GoogleService-Info.plist` file
 
-[Upload APNs with Firebase](https://firebase.google.com/docs/cloud-messaging/ios/certs)
+[Upload APNs with Firebase](https://firebase.google.com/docs/cloud-messaging/ios/client#upload_your_apns_authentication_key)
+
+Upload your APNs authentication key to Firebase. If you don't already have an APNs authentication key, see [Configuring APNs with FCM](https://firebase.google.com/docs/cloud-messaging/ios/certs).
+
+Inside your project in the Firebase console, select the gear icon, select `Project Settings`, and then select the `Cloud Messaging` tab.
+
+In APNs authentication key under iOS app configuration, click the `Upload` button.
+
+- Browse to the location where you saved your key
+- select it
+- click Open
+- Add the key ID for the key (available in Certificates, Identifiers & Profiles in the Apple Developer Member Center)
+- click Upload.
 
 The Firebase Cloud Messaging APNs interface uses the [Apple Push Notification service](https://developer.apple.com/notifications/) (APNs) to send messages up to 4KB in size to your iOS app, including when it is in the background.
 
