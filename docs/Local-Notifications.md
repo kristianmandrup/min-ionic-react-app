@@ -23,7 +23,7 @@ export const addLocalNotification = (opts: any = {}) => {
 
 You can add buttons, inputs, attachments and much more...
 
-### Launch details
+## Launch details
 
 See [plugin launch-details](https://github.com/katzer/cordova-plugin-local-notifications#launch-details)
 
