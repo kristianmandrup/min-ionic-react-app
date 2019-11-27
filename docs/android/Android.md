@@ -317,6 +317,10 @@ You will also need to enable the `developer` mode on your Android device if you 
 }
 ```
 
+Simply use the Android Studion logcat with a filter
+
+![Android Studio log filter](./images/android-studio-log-filter.png)
+
 ### More resources
 
 - [Android Studio Troubleshooting](./Android-troubleshooting.md)
