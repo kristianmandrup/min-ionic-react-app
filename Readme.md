@@ -120,3 +120,7 @@ Add the `<script>` tag to your `public/index.html` file
 Note: This script with the `eon-ionic-demo` id has already been added to the `public/index.html` of this project.
 
 Now `console.log` statements will be printed in your `jsconsole.com` session window as well.
+
+Didn't succeed to make it work however...
+
+A better, more mature solution would be to use [console.io](https://nkashyap.github.io/console.io/)

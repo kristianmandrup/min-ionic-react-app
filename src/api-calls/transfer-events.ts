@@ -16,6 +16,7 @@ export const createTransferEventSubscription = (dispatch: any) =>
         const { title, microDescription } = fields;
         const notificationMsg =
           title || microDescription || humanize(eventType);
+        console.log("new transfer event received", notificationMsg);
         showNotification(notificationMsg);
         dispatch({
           type: "ENERGY_TRANSFER_EVENT_CREATED",

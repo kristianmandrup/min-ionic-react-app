@@ -88,8 +88,6 @@ export const EventList: React.FC<any> = (props: any) => {
 
   const orderedEvents = orderEventsByCreatedDate(energyTransferEvents);
 
-  console.log({ orderedEvents });
-
   // show latest two events (index: 0, 1)
   const eventsToDisplay = orderedEvents.slice(0, 5);
 

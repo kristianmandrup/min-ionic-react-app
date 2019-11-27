@@ -8,8 +8,7 @@ import {
 import React from "react";
 
 export const Home: React.FC<any> = (props: any) => {
-  const { user } = props;
-  console.log({ user });
+  // const { user } = props;
   return (
     <IonPage>
       <IonHeader>
