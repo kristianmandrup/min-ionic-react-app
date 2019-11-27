@@ -67,17 +67,43 @@ This is a `GoogleService-Info.plist` file
 
 Upload your APNs authentication key to Firebase. If you don't already have an APNs authentication key, see [Configuring APNs with FCM](https://firebase.google.com/docs/cloud-messaging/ios/certs).
 
-To create an authentication key:
+## Create an authentication key
 
-In your developer account, go to `Certificates, Identifiers & Profiles`, and under `Keys`, select `All`.
+Log in to your [Apple developer account](<(https://developer.apple.com/account/)>)
 
-- Click the `Add` button `+` in the upper-right corner.
-- Enter a description for the `APNs Auth Key`
-- Under `Key Services`, select the `APNs` checkbox, and click `Continue`.
-- Click `Confirm` and then `Download`
-- Save your key in a secure place
+![Apple dev account](./images/apple-account.png)
+
+Go to `Certificates, Identifiers & Profiles`
+
+![Apple certificates](./images/apple-certificates.png)
+
+Select `Keys`
+
+![Create key](./images/create-key.png)
+
+Click the `Create a key` or the `+` button
+
+![Register new key](./images/register-new-key.png)
+
+Enter a description for the `APNs Auth Key`
+
+![Register new key](./images/register-new-key.png)
+
+Under `Key Services`, select the `APNs` checkbox.
+
+![Key ready](./images/key-ready.png)
+
+The `Continue` button should now be enabled. Click `Continue`
+
+![Key download](./images/key-download.png)
+
+Click `Download` and save your key in a secure place on disk
 
 IMPORTANT: This is a one-time download, and the key cannot be retrieved later.
+
+Click `Done`
+
+![Key registered](./images/key-registered.png)
 
 If you'd like to verify that your APNs authentication key is set up properly and is accepted by APNs, try sending a test push notification.
 
