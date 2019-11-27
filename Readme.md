@@ -93,3 +93,30 @@ export const addLocalNotification = (opts: any = {}) => {
   });
 };
 ```
+
+## Debugging Hybrid javascript apps
+
+See [Remote Debugging videos](https://jsconsole.com/remote-debugging.html)
+
+- Go to [jsconsole.com](https://jsconsole.com/)
+- Type `:listen`
+
+This should give you something like
+
+```txt
+Connected to "4e0f5be6-e7eb-486b-8d4a-db50f6af6e35"
+
+<script src="https://jsconsole.com/js/remote.js?4e0f5be6-e7eb-486b-8d4a-db50f6af6e35"></script>
+```
+
+You can also use your own unique id of preferenxe
+
+`:listen eon-ionic-demo`
+
+Then use `<script src="https://jsconsole.com/js/remote.js?eon-ionic-demo"></script>`
+
+Add the `<script>` tag to your `public/index.html` file
+
+Note: This script with the `eon-ionic-demo` id has already been added to the `public/index.html` of this project.
+
+Now `console.log` statements will be printed in your `jsconsole.com` session window as well.
