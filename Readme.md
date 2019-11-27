@@ -132,6 +132,8 @@ const log = createSender(onMsgSent);
 log('hello)
 ```
 
+A sample client can be found in `src/socket-logger.ts`
+
 ### Server
 
 See [Server API](https://socket.io/docs/server-api/)
@@ -157,3 +159,5 @@ http.listen(port, function() {
   console.log("listening on *:" + port);
 });
 ```
+
+Sample log server can be found in `/server/
