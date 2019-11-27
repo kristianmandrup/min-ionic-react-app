@@ -46,3 +46,27 @@ npm run android:sync
 
 - [iOS development guide](./docs/ios/iOS.md)
 - [Android development guide](./docs/android/Android.md)
+
+## Plugins
+
+[use Ionic Native / Cordova Plugins with Ionic React and Capacitor](https://stackoverflow.com/questions/57787916/what-is-the-right-way-to-use-ionic-native-cordova-plugins-with-ionic-react)
+
+```sh
+$ npm install @ionic-native/javascript-package-name
+# ...
+$ npm install cordova-plugin-name
+# ...
+$ npx cap sync
+# ...
+```
+
+## Example local notifications
+
+```sh
+$ npm install @ionic-native/local-notifications
+# ...
+$ npm i cordova-plugin-local-notification
+# ...
+$ npx cap sync
+# ...
+```
