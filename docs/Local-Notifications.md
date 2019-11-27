@@ -51,14 +51,47 @@ export const App = (props: any = {}) => {
   }
 
   const onDeviceReady = () => {
-    const { launchDetails } = LocalNotifications.local
+    const { launchDetails } = LocalNotifications
     if (isForTransferEvent(launchDetails)) {
       const route = 'events'
       props.history.push(`/${route}`);
     }
     // if launched from notification, push specific route to go to that page in the app
   }
+```
 
+See [issue: launchDetails for Ionic app](https://github.com/katzer/cordova-plugin-local-notifications/issues/1856) for more on how to handle and achieve this
+
+I guess I could use
+
+```ts
+/**
+   * Sets a callback for a specific event
+   * @param eventName {string} The name of the event. Available events: schedule, trigger, click, update, clear, clearall, cancel, cancelall. Custom event names are possible for actions
+   * @return {Observable}
+   */
+  on(eventName: string): Observable<any>;
+  /**
+   * Not an official interface, however its possible to manually fire events.
+   * @param eventName The name of the event. Available events: schedule, trigger, click, update, clear, clearall, cancel, cancelall. Custom event names are possible for actions
+   * @param args Optional arguments
+   */
+  fireEvent(eventName: string, args: any): void;
+  /**
+   * Fire queued events once the device is ready and all listeners are registered.
+   * @returns {Promise<any>}
+   */
+```
+
+```ts
+plugin.fireEvent("trigger-event", launchDetails);
+```
+
+I'm using React but I can see this is just an RxJS observable (default used in Angular). Luckily the Observable has a `toPromise` method to make it easier to work with
+
+```ts
+cons eventPromise = plugin.on('trigger-event').toPromise()
+eventPromise.then((details) => console.log(details))
 ```
 
 Sample launch/trigger logic
