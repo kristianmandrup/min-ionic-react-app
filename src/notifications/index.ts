@@ -3,5 +3,5 @@ import { showWebNotification } from "./web-notification";
 
 export function showNotification(message: string) {
   showWebNotification(message);
-  addLocalNotification({ message });
+  addLocalNotification({ text: message });
 }

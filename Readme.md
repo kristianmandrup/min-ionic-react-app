@@ -81,7 +81,7 @@ The code
 import { LocalNotifications } from "@ionic-native/local-notifications";
 
 export const addLocalNotification = (opts: any = {}) => {
-  console.log("addLocalNotification", { message: opts.message });
+  console.log("addLocalNotification", opts.text);
   const defaultOpts = {
     title: "Transfer event",
     text: "A new transfer event",
@@ -93,6 +93,17 @@ export const addLocalNotification = (opts: any = {}) => {
   });
 };
 ```
+
+Click on the `events` tab of the app to make the app subscribe to transfer event notifications.
+Go to the `dashboard` tab and trigger an event.
+
+### Android Simulator
+
+Drag down the top bar of the android simulator (where battery indicator is situated) to display notifications
+
+![Cordova Android Launch configuration](./docs/android/images/android-native-notification-received.png)
+
+You should see your notification displayed
 
 ## Debugging Hybrid javascript apps
 
