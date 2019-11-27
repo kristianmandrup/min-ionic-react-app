@@ -79,3 +79,8 @@ $ npx cap sync
 
 - [Local Notifications](./docs/Local-Notifications.md)
 - [Logging and Debugging](./docs/Logging-Debugging.md)
+
+## Future improvements
+
+Currently the subscription to transfer events is made only when the events page is activated.
+This should instead be moved to the `SignedIn` component to be triggered as soon as the user successfully signs in and the main page is displayed.
