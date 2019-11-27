@@ -62,7 +62,7 @@ export const App = (props: any = {}) => {
 
 See [issue: launchDetails for Ionic app](https://github.com/katzer/cordova-plugin-local-notifications/issues/1856) for more on how to handle and achieve this
 
-I guess I could use
+See also [Ionic local-notifications docs](https://ionicframework.com/docs/v3/native/local-notifications/)
 
 ```ts
 /**
