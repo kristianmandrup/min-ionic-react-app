@@ -1,0 +1,70 @@
+.authentication__button {
+  display: inherit;
+}
+
+.authentication__input {
+  display: inherit;
+}
+
+.messageCard {
+  background: red;
+  color: white;
+  font-weight: bold;
+}
+
+/* .tabBtn button {
+  background: red;
+  color: white;
+} */
+
+.eventCard {
+  background: #dddddd;
+}
+
+.logo {
+  width: 2em;
+  margin-left: 88%;
+}
+
+/* .logo-center {
+  display: inline-block;
+  width: 4em;
+  text-align: center;
+} */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 4em;
+}
+
+.cardSubTitle {
+  font-size: large;
+  color: darkslategray;
+  /* text-shadow: 1px 1px black; */
+}
+
+.navTab {
+  color: red
+}
+
+.eventAdminBtn {
+  width: 100%;
+  font-weight: bold;
+  font-size: large;
+  height: 2em;
+}
+
+.md {
+  --ion-toolbar-background: white;
+}
+
+ion-title {
+  text-align: center;
+}
+
+ion-header ion-toolbar.toolbar, .toolbar-container {
+  background: white !important;
+  color: red !important;
+}

@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "616228215663",
+    "firebase_url": "https://eon-demo-8dab8.firebaseio.com",
+    "project_id": "eon-demo-8dab8",
+    "storage_bucket": "eon-demo-8dab8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616228215663:android:8d9e2e82031019d7e6669a",
+        "android_client_info": {
+          "package_name": "io.engine.eonionic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616228215663-921qnqq0jgbbm4gv0rbu056dv86gkn6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhj1J5bARTrYiNxvvAjEftBDcTWpbBKSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616228215663-921qnqq0jgbbm4gv0rbu056dv86gkn6s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "616228215663-r1csl97r772mo4vbm2ae9uisvcnhgdnd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.eon.eondemo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616228215663:android:46e9928e5cbe853fe6669a",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616228215663-921qnqq0jgbbm4gv0rbu056dv86gkn6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhj1J5bARTrYiNxvvAjEftBDcTWpbBKSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616228215663-921qnqq0jgbbm4gv0rbu056dv86gkn6s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "616228215663-r1csl97r772mo4vbm2ae9uisvcnhgdnd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.eon.eondemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
